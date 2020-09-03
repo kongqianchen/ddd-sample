@@ -1,0 +1,114 @@
+server:
+  port: 51013
+  undertow:
+    io-threads: 8 #IO线程数
+    worker-threads: 64 #线程池大小
+    buffer-size: 1024
+    direct-buffers: true
+spring:
+  profiles:
+    active: dev
+  application:
+    name: goodscenter-commodity
+  resources:
+    static-locations: classpath:/resources/,classpath:/static/
+  mvc:
+    static-path-pattern: /**
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    locale: zh_CN
+    time-zone: GMT+8
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+#设置最大超时时间
+ribbon:
+  ReadTimeout: 50000
+  ConnectTimeout: 50000
+  okhttp:
+    enabled: true
+  http:
+    client:
+      enabled: false
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
+  hystrix:
+    enabled: true #feign的调用分两层，ribbon和hystrix，高版本的hystrix默认是关闭的
+  compression:
+    request:
+      enabled: true # 开启对 request 请求压缩
+      min-request-size: 2048
+      mime-types: text/xml,application/xml,application/json
+    response:
+      enabled: true
+#设置最大容错超时时间
+hystrix:
+  threadpool:
+    default:
+      coreSize: 5000 #并发执行的最大线程数，默认10
+      maxQueueSize: 5000 #BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 5000 #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  shareSecurityContext: true
+  # hystrix 信号量隔离，x秒后自动超时
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+          semaphore:
+            maxConcurrentRequests: 10000
+          thread:
+            timeoutInMilliseconds: 8000
+
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: trace
+    wiki.xsx.core.log: debug
+  file: /data/logs/goodscenter-commodity/goodscenter-commodity.log
+
+commodity-swagger:
+  groupName: goodscenter-commodity
+  title: 商品中心
+  desc: 商品中心商品信息API说明文档
+  version: 1.0.0
+  termsOfServiceUrl: javascript:void(0)
+  license: Apache 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
+  contactName:
+  contactUrl:
+  contactEmail:
+  basePackage: com.bytesee.mp.goodscenter.commodity.controller.facade
+
+mybatis-plus:
+  mapper-locations: classpath:sqlMapper/*.xml
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      #主键类型  0:"数据库ID自增", 1:"不操作", 2:"用户输入ID",3:"数字型snowflake", 4:"全局唯一ID UUID", 5:"字符串型snowflake";
+      #      id-type: ID_WORKER_STR
+      #字段策略
+      insert-strategy: not_null
+      #      update-strategy: not_null
+      select-strategy: not_null
+      #驼峰下划线转换
+      table-underline: true
+      logic-delete-field: delFlag  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+#      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+

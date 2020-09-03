@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="center.wxp.dddsample.infrastructure.tunnel.database.mapper.CommodityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="center.wxp.dddsample.infrastructure.tunnel.dataobject.CommodityDo">
+        <id column="id" property="id"/>
+        <result column="creater" property="creater"/>
+        <result column="create_time" property="createTime"/>
+        <result column="updater" property="updater"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="deleter" property="deleter"/>
+        <result column="delete_time" property="deleteTime"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="name" property="name"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="seller_id" property="sellerId"/>
+        <result column="supplier_id" property="supplierId"/>
+        <result column="merchant_model" property="merchantModel"/>
+        <result column="description_id" property="descriptionId"/>
+        <result column="commodity_type" property="commodityType"/>
+        <result column="basic_unit" property="basicUnit"/>
+        <result column="status" property="status"/>
+        <result column="sort" property="sort"/>
+        <result column="public_brand" property="publicBrand"/>
+        <result column="brand_id" property="brandId"/>
+        <result column="private_brand_name" property="privateBrandName"/>
+        <result column="origin" property="origin"/>
+        <result column="labels" property="labels"/>
+        <result column="keywords" property="keywords"/>
+        <result column="advertising" property="advertising"/>
+        <result column="put_on_shelves_time" property="putOnShelvesTime"/>
+        <result column="pull_off_shelves_time" property="pullOffShelvesTime"/>
+        <result column="mall_hide" property="mallHide"/>
+        <result column="attributes" property="attributes"/>
+        <result column="attributes_sale" property="attributesSale"/>
+        <result column="ext_feature" property="extFeature"/>
+        <result column="initial_sales_volume" property="initialSalesVolume"/>
+        <result column="bar_code" property="barCode"/>
+        <result column="commodity_code" property="commodityCode"/>
+        <result column="popularity" property="popularity"/>
+        <result column="sales_flag" property="salesFlag"/>
+        <result column="notice" property="notice"/>
+        <result column="commodity_describe" property="commodityDescribe"/>
+        <result column="platform_id" property="platformId"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="mnemonic_code" property="mnemonicCode"/>
+    </resultMap>
+
+    <resultMap id="newResultMap" type="center.wxp.dddsample.infrastructure.tunnel.dataobject.CommodityBaseInfoDo">
+        <id column="id" property="id"/>
+        <result column="delFlag" property="delFlag"/>
+        <result column="name" property="name"/>
+        <result column="categoryId" property="categoryId"/>
+        <result column="sellerId" property="sellerId"/>
+        <result column="supplierId" property="supplierId"/>
+        <result column="descriptionId" property="descriptionId"/>
+        <result column="commodityType" property="commodityType"/>
+        <result column="basicUnit" property="basicUnit"/>
+        <result column="brandId" property="brandId"/>
+        <result column="merchantModel" property="merchantModel"/>
+        <result column="putOnShelvesTime" property="putOnShelvesTime"/>
+        <result column="pullOffShelvesTime" property="pullOffShelvesTime"/>
+        <result column="status" property="status"/>
+        <result column="commodityCode" property="commodityCode"/>
+        <result column="commodityDescribe" property="commodityDescribe"/>
+        <result column="platformId" property="platformId"/>
+        <result column="tenantId" property="tenantId"/>
+        <result column="pictureUrl" property="pictureUrl"/>
+        <result column="commodityPrice" property="commodityPrice"/>
+    </resultMap>
+
+    <resultMap id="mappingResultMap" type="center.wxp.dddsample.infrastructure.tunnel.dataobject.CommodityMappingInfoDo">
+        <id column="id" property="id"/>
+        <result column="delFlag" property="delFlag"/>
+        <result column="name" property="name"/>
+        <result column="categoryId" property="categoryId"/>
+        <result column="sellerId" property="sellerId"/>
+        <result column="supplierId" property="supplierId"/>
+        <result column="descriptionId" property="descriptionId"/>
+        <result column="commodityType" property="commodityType"/>
+        <result column="basicUnit" property="basicUnit"/>
+        <result column="brandId" property="brandId"/>
+        <result column="merchantModel" property="merchantModel"/>
+        <result column="putOnShelvesTime" property="putOnShelvesTime"/>
+        <result column="pullOffShelvesTime" property="pullOffShelvesTime"/>
+        <result column="status" property="status"/>
+        <result column="commodityCode" property="commodityCode"/>
+        <result column="commodityDescribe" property="commodityDescribe"/>
+        <result column="platformId" property="platformId"/>
+        <result column="tenantId" property="tenantId"/>
+        <result column="pictureUrl" property="pictureUrl"/>
+        <result column="commodityPrice" property="commodityPrice"/>
+        <result column="supplierCategoryId" property="supplierCategoryId"/>
+        <result column="categoryFrontendId" property="categoryFrontendId"/>
+        <result column="isMappingStatus" property="isMappingStatus"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        creater,
+        create_time,
+        updater,
+        update_time,
+        deleter,
+        delete_time,
+        del_flag,
+        mnemonic_code,
+        id, name,
+        category_id,
+        parent_category_ids,
+        seller_id, supplier_id, merchant_model, description_id, commodity_type, basic_unit, status, sort, public_brand, brand_id, private_brand_name, origin, labels, keywords, advertising, put_on_shelves_time, pull_off_shelves_time, mall_hide, ext_attributes, ext_feature, initial_sales_volume, bar_code, commodity_code, popularity, sales_flag, notice, commodity_describe, platform_id, tenant_id
+    </sql>
+
+    <!-- 特殊字段查询结果列 -->
+    <sql id="new_Column_List">
+        c.id,
+        c.name,
+        c.category_id categoryId,
+        c.commodity_code commodityCode,
+        c.seller_id sellerId,
+        c.supplier_id supplierId,
+        c.description_id descriptionId,
+        c.commodity_type commodityType,
+        c.basic_unit basicUnit,
+        c.brand_id brandId,
+        c.merchant_model merchantModel,
+        c.put_on_shelves_time putOnShelvesTime,
+        c.pull_off_shelves_time pullOffShelvesTime,
+        c.status,
+        c.commodity_describe commodityDescribe,
+        c.platform_id platformId,
+        c.tenant_id tenantId,
+        c.del_flag delFlag,
+    </sql>
+
+    <sql id="where_fragement">
+        <if test="entity.name!=null">
+            <![CDATA[ AND c.name like CONCAT('%',#{entity.name},'%') ]]>
+        </if>
+        <if test="entity.commodityCode!=null">
+            <![CDATA[ AND c.commodity_code like CONCAT('%',#{entity.commodityCode},'%') ]]>
+        </if>
+        <if test="entity.categoryId!=null">
+            <![CDATA[ AND c.category_id = #{entity.categoryId} ]]>
+        </if>
+        <if test="entity.status!=null">
+            <![CDATA[ AND c.status = #{entity.status}  ]]>
+        </if>
+        <if test="entity.sellerId!=null">
+            <![CDATA[ AND c.seller_id = #{entity.sellerId}  ]]>
+        </if>
+        <if test="entity.delFlag!=null">
+            <![CDATA[ AND c.del_flag = #{entity.delFlag}  ]]>
+        </if>
+        <if test="entity.platformId!=null">
+            <![CDATA[ AND c.platform_id = #{entity.platformId}  ]]>
+        </if>
+    </sql>
+
+    <sql id="where_fragement1">
+        <if test="entity.name!=null">
+            <![CDATA[ AND c.name like CONCAT('%',#{entity.name},'%') ]]>
+        </if>
+        <if test="entity.commodityCode!=null">
+            <![CDATA[ AND c.commodity_code like CONCAT('%',#{entity.commodityCode},'%') ]]>
+        </if>
+        <if test="entity.categoryId!=null">
+            <![CDATA[ AND c.category_id = #{entity.categoryId} ]]>
+        </if>
+        <if test="entity.status!=null">
+            <![CDATA[ AND c.status = #{entity.status}  ]]>
+        </if>
+        <if test="entity.sellerId!=null">
+            <![CDATA[ AND c.seller_id = #{entity.sellerId}  ]]>
+        </if>
+        <if test="entity.platformId!=null">
+            <![CDATA[ AND c.platform_id = #{entity.platformId}  ]]>
+        </if>
+    </sql>
+
+    <select id="getBaseCommodityInfo"  resultMap="newResultMap">
+        select
+        <include refid="new_Column_List" />
+        pic.picture_url pictureUrl,
+        price.commodity_price commodityPrice
+        from commodity c
+        INNER JOIN commodity_picture pic  on c.id = pic.commodity_id and  pic.del_flag = 0 and pic.cover = 1 and pic.sku_id is null
+        INNER JOIN commodity_price price  on c.id = price.commodity_id and price.del_flag = 0 and price.sku_id is null
+        where c.del_flag = 0
+        <include refid="where_fragement" />
+        ORDER BY c.sort ASC , c.create_time desc
+    </select>
+
+
+    <select id="getCommodityMappingInfo"  resultMap="mappingResultMap">
+        select
+        <include refid="new_Column_List" />
+        mapping.id supplierCategoryMappingId,
+        pic.picture_url pictureUrl,
+        price.commodity_price commodityPrice
+        from commodity c
+        INNER JOIN commodity_picture pic  on c.id = pic.commodity_id and  pic.del_flag = 0 and pic.cover = 1 and pic.sku_id is null
+        INNER JOIN commodity_price price  on c.id = price.commodity_id and price.del_flag = 0 and price.sku_id is null
+        INNER JOIN category_supplier_commodity_mapping mapping  on c.id = mapping.commodity_id and mapping.del_flag = 0
+        where c.del_flag = 0
+        <include refid="where_fragement1" />
+        <if test="entity.supplierCategoryId!=null">
+            <![CDATA[ AND mapping.supplier_category_id = #{entity.supplierCategoryId}  ]]>
+        </if>
+        ORDER BY c.sort ASC , c.create_time desc
+    </select>
+
+    <select id="getAllCommodityMappingInfo"  resultMap="mappingResultMap">
+        select
+        <include refid="new_Column_List" />
+        if(<if test="entity.supplierCategoryId!=null">
+        <![CDATA[ mapping.supplier_category_id = #{entity.supplierCategoryId} and  ]]>
+         </if>
+        mapping.supplier_category_id is not null,1,0)isMappingStatus,
+        mapping.id supplierCategoryMappingId,
+        mapping.supplier_category_id supplierCategoryId,
+        pic.picture_url pictureUrl,
+        price.commodity_price commodityPrice
+        from commodity c
+        LEFT JOIN category_supplier_commodity_mapping  mapping on c.id=mapping.commodity_id and mapping.del_flag = 0
+        INNER JOIN commodity_picture pic  on c.id = pic.commodity_id and  pic.del_flag = 0 and pic.cover = 1 and pic.sku_id is null
+        INNER JOIN commodity_price price  on c.id = price.commodity_id and price.del_flag = 0 and price.sku_id is null
+        where c.del_flag = 0
+        <include refid="where_fragement1" />
+        ORDER BY c.sort ASC , c.create_time desc
+    </select>
+
+    <select id="getFrontendCommodityMappingInfo"  resultMap="mappingResultMap">
+        select
+        <include refid="new_Column_List" />
+        mapping.id frontendCategoryMappingId,
+        pic.picture_url pictureUrl,
+        price.commodity_price commodityPrice
+        from commodity c
+        INNER JOIN commodity_picture pic  on c.id = pic.commodity_id and  pic.del_flag = 0 and pic.cover = 1 and pic.sku_id is null
+        INNER JOIN commodity_price price  on c.id = price.commodity_id and price.del_flag = 0 and price.sku_id is null
+        INNER JOIN category_frontend_commodity_mapping mapping  on c.id = mapping.commodity_id and mapping.del_flag = 0
+        where c.del_flag = 0
+        <include refid="where_fragement1" />
+        <if test="entity.categoryFrontendId!=null">
+            <![CDATA[ AND mapping.category_frontend_id = #{entity.categoryFrontendId}  ]]>
+        </if>
+        ORDER BY c.sort ASC , c.create_time desc
+    </select>
+
+    <select id="getAllFrontendCommodityMappingInfo"  resultMap="mappingResultMap">
+        select
+        <include refid="new_Column_List" />
+        if(<if test="entity.categoryFrontendId!=null">
+        <![CDATA[ mapping.category_frontend_id = #{entity.categoryFrontendId} and  ]]>
+        </if>
+        mapping.category_frontend_id is not null,1,0)isMappingStatus,
+        mapping.id frontendCategoryMappingId,
+        mapping.category_frontend_id categoryFrontendId,
+        pic.picture_url pictureUrl,
+        price.commodity_price commodityPrice
+        from commodity c
+        LEFT JOIN category_frontend_commodity_mapping  mapping on c.id=mapping.commodity_id and mapping.del_flag = 0
+        INNER JOIN commodity_picture pic  on c.id = pic.commodity_id and  pic.del_flag = 0 and pic.cover = 1 and pic.sku_id is null
+        INNER JOIN commodity_price price  on c.id = price.commodity_id and price.del_flag = 0 and price.sku_id is null
+        where c.del_flag = 0
+        <include refid="where_fragement1" />
+        ORDER BY c.sort ASC , c.create_time desc
+    </select>
+
+    <select id="selectSaleable" resultType="java.lang.Integer">
+        SELECT
+            COUNT(ct.id)
+        FROM commodity ct
+        INNER JOIN brand b
+        ON b.id=ct.brand_id AND b.del_flag=0
+        AND b.platform_id=#{entity.platformId} AND b.tenant_id=#{entity.tenantId}
+        INNER JOIN category_backstage_brand cbb
+        ON cbb.brand_id=ct.brand_id AND cbb.category_backstage_id=ct.category_id AND cbb.del_flag=0
+        AND cbb.platform_id=#{entity.platformId} AND cbb.tenant_id=#{entity.tenantId}
+        <where>
+            ct.id=#{entity.id}
+            AND ct.platform_id=#{entity.platformId}
+            AND ct.tenant_id=#{entity.tenantId}
+        </where>
+    </select>
+
+</mapper>

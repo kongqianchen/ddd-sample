@@ -1,0 +1,42 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.10.11.107:25100
+        namespace: 4e167baf-178c-4aa7-8557-c82b097c029c
+  datasource:
+    url: jdbc:mysql://10.10.11.105:3306/middlestage-goods-center?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&connectTimeout=5000&socketTimeout=5000&autoReconnect=true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: ey4nGsVL
+    type: com.alibaba.druid.pool.DruidDataSource
+
+# graylog
+graylog.graylogHost: 10.10.11.103
+graylog.graylogPort: 28082
+graylog.app_name: distribution-goods-center-dev
+
+mybatis-plus:
+ configuration:
+   # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+   log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+app:
+  name: dsyhg
+  key: dsy_GA4KIxHwiM1V
+  secret: 5qBSbKCglrOuSablxdyf
+  gateway: http://10.10.11.107:25016/api
+  public-key: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC7QcndEvdxwrYjprXHGzInU6+pY6UQzdIaU+x9cUTcjsCcs0gb8J+87m59EObWGtgKSxsPnMd4KBnqU/SiM3NWZlSqeg3aCUM8O1K/93FALZ2hEo7Xt7xLI2OeJiT6wtkFIw4RaVRBXKh6v64YMSXJdkD1a0wJm6a5ygXFkMTbWwIDAQAB
+  private-key: MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBALtByd0S93HCtiOmtccbMidTr6wxpRDN0hpT7H1xRNyOwJyzSBvwn7zubn0Q5tYa2ApLGw+cx3goGepT9KIzc1ZmVKp6DdoJQzw7Ur/3cUAtnaESjte3vEsjY54mJPrC2QUjDhFpVEFcqHq/rhgxJcl2QPVrTAmbprnKBcWQxNtbAgMBAAECgYA6uP7c3T3L5wvHUlhfACBSROQpcp4pDuJ8byUSkZrOr9WnTnGmkWcGkJ8FiW9aZUCqubLayoejHrBB0+I7m3bnb6lVUBjou7daHPLANW6Q3Y9cRP3lkLbEFrWaZ3+LBRkF2n9OUxYBGpDGFNAUGTlzfjZh9cw0vIHt3/wwNm5dAQJBAOwTz3iQ+3Swq29U82rfzFr1tyNsu9yPLWsGjGis4TRGvs2Awsv6jq1e261QjUnd6SrVMclQ/HWoUO6TVyM1tqsCQQDLD0SEWZVHvdcyEly9aWoa/66wIK6OymcxhDe+JHZfYwEIqGbMus3hyV07vjEA0lSXCBzEYfU5PifcnfnOIy4RAkEA1QfPaWnTL2qZWN6cxa1sWAxxFatyHsao4nJHU9HlauoIFaOCpNTV2UbHDy+oP6bbWIaH5bWKC5Y2agNVV3WJ/wJBAJeG8CE3XE9p2dESpMPviu9Uxv3FlZ0WawUnXhV0ziSGE7prODMkXwhTJFC1r4mmats9gYIGe2DZAhP+ivAJjpECQQC/LjlIT+KRW97d7Q+ZimT+EBlj521q4OBpk+VyhxwTG6tZP/miV4XKPB4uEdULg0Xb4NZ87fw45QENdjGWjjU1
+  server-public-key: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCjPOQUjTo+O+7xr7uu7EnUcUH1mZJ/tVRedoYtoh5oePW7KLqHWDR1wGfEjr7nSRYWtUTkyJya1drYyzp8XY+PFzODHQMdD1BpYEl3IAC1/DDf57LB22thW5Q+DfuMMGm08PALpXV2RWVDDOMIGMMbDK/AsNpendYE+TVfqLepKwIDAQAB
+  mq-access: http://MQINST-c5be9006c5ac4f2ab4d2b85b63905f38_10.10.11.107:25015
+  mq-gns-method: /rmqbase/site/nsnamesstr
+
+mqsetting:
+  brand-del-topic: brandDelTopic
+  brand-del-group: goodscenter-brand-del
+  brand-del-tag: branddelTags
+  category-brand-del-topic: categoryBrandDelTopic
+  category-brand-del-group: goodscenter-category-brand-del
+  category-brand-del-tag: categorybrandTags
